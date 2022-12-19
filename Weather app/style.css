@@ -1,0 +1,162 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+    margin:0;
+    /* padding:16px; */
+}
+
+/* first for mobile device so widthi s 400px */
+:root{
+    margin:0;
+    --spacing-regular:16px;
+    --spacing-small:8px;
+
+    --font-small:0.5rem;
+    --font-medium: 1rem;
+    --font-large:2rem;
+    --font-xl:4rem;
+
+    --font-semibold:600;
+    --font-bold:800;
+
+    max-width:800px;
+    font-family: 'Times New Roman', Times, serif;
+    margin:var(--spacing-regular) auto;
+}
+.container{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-areas:
+    "search search"
+    "current current"
+    "hourly hourly"
+    "fiveday fiveday"
+    "feelslike humidity";
+    gap: var( --spacing-regular);
+}
+.h1,.h2{
+    margin:0;
+
+}
+.container, .container article{
+    border:1px solid;
+    border-radius: var(--spacing-regular);
+    padding:var(--spacing-regular);
+}
+#search{
+    grid-area:search;
+    font-size: va(--font-large);
+    border-radius: var(--font-medium);
+    padding:var(--spacing-small);
+}
+
+/* styles related to current-weather forcast */
+ #current-forecast{
+    grid-area: current;
+    text-align: center;
+} 
+#current-forecast .temp{
+    font-size: var(--font-xl);
+}
+p
+{
+  margin:0;
+}
+#current-forecast .des{
+    text-transform: capitalize;
+}
+#current-forecast .des, #current-forecast .min-max{
+    font-size: var(--font-medium);
+    font-weight: var(--font-semibold);
+}
+
+/* styles related to hourly forecast */
+#hourly-forecast
+{
+  grid-area:hourly;
+  text-align: center;
+}
+#hourly-forecast .hourly-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(200px,1fr);
+    overflow-x: auto;
+    gap: var(--spacing-regular)
+}
+#hourly-forecast .hourly-container .icon{
+    height:100px;
+    width:100px;
+    object-fit:contain;
+}
+#hourly-forecast .hourly-container .hourly-temp{
+    font-size: var(--spacing-regular);
+    font-weight: var(--font-semibold);
+}
+
+/* styling for 5-day forecast */
+#five-Day-Forecast
+{
+  grid-area:fiveday;
+  text-align: center;
+}
+#five-day-forecast .five-day-forecast-container
+{
+    display: grid;
+    grid-auto-flow: row;
+}
+.five-day-forecast-container .day-wise-forecast{
+    display: grid;
+    grid-template: auto/ repeat(4,1fr);
+    gap:var(--spacing-regular);
+    place-items: center;
+}
+.day-wise-forecast .day{
+    text-transform: capitalize;
+    justify-self: start;
+}
+.day-wise-forecast .min-temp
+{
+    font-size: var(--spacing-regular);
+    font-weight: var(--font-semibold);
+}
+.day-wise-forecast .max-temp
+{
+    font-size: var(--spacing-regular);
+    font-weight: var(--font-semibold);
+    justify-self: end;
+}
+.min-temp{
+    opacity: 50%;
+}
+.five-day-forecast-container .day-wise-forecas .icon{
+   height:100px;
+   width:100px;
+}
+
+/* styling for feels-like section */
+#feels-like
+{
+    grid-area: feelslike;
+    text-align: center;
+}
+
+/* styling for humidity */
+#humidity{
+  grid-area: humidity;
+  text-align: center;
+} 
+
+/* we have used grid so it's pretty much responsive on its own */
+
+/* for large devices */
+@media (width>=650px)
+{
+    .container{
+        grid-template-columns: repeat(2,1fr);
+        grid-template-areas:
+        "search search search search"
+        "current current current current"
+        "hourly  hourly  fiveday fiveday"
+        "feelslike humidity fiveday fiveday";
+    } 
+}
